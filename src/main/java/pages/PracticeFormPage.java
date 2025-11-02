@@ -2,6 +2,7 @@ package pages;
 
 import dto.Student;
 import enums.Gender;
+import enums.Hobbies;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+
+import java.util.List;
 
 public class PracticeFormPage extends BasePage {
     public PracticeFormPage(WebDriver driver) {
@@ -30,6 +33,15 @@ public class PracticeFormPage extends BasePage {
     WebElement fieldCurAddress;
     @FindBy(id = "dateOfBirthInput")
     WebElement fieldDAteOfBirth;
+    @FindBy(xpath = "//input[@id='subjectsInput']")
+    WebElement fieldSubjects;
+    @FindBy(id = "react-select-3-input")
+    WebElement fieldState;
+    @FindBy(id = "react-select-4-input")
+    WebElement fieldCity;
+    @FindBy(id = "submit")
+    WebElement btnSubmit;
+
 
 
     public void typePracticeForm(Student student) {
@@ -42,7 +54,11 @@ public class PracticeFormPage extends BasePage {
         fieldMobile.sendKeys(student.getMobile());
         //fieldDAteOfBirth.sendKeys(student.getDateOfBirth());
         typeDateOfBirth(student.getDateOfBirth());
+        typeSubjects(student.getSubjects());
+        typeHobbies(student.getHobbies());
         fieldCurAddress.sendKeys(student.getAddress());
+        typeStateCity(student.getState(), student.getCity());
+        btnSubmit.click();
 
     }
 
@@ -60,5 +76,38 @@ public class PracticeFormPage extends BasePage {
             fieldDAteOfBirth.sendKeys(Keys.chord(Keys.COMMAND, "a"));
             fieldDAteOfBirth.sendKeys(dateOfBirth);
             fieldDAteOfBirth.sendKeys(Keys.ENTER);
+    }
+
+    private void typeSubjects(String subjects) {
+        fieldSubjects.click();
+        String[] arr = subjects.split(",");
+        for (String s : arr) {
+            fieldSubjects.sendKeys(s);
+            fieldSubjects.sendKeys(Keys.ENTER);
+        }
+    }
+
+    private void typeHobbies(List<Hobbies> hobbies){
+        for (Hobbies h: hobbies){
+            switch (h){
+                case MUSIC:
+                    driver.findElement(By.xpath(h.getLocator())).click();
+                    break;
+                case SPORTS:
+                    driver.findElement(By.xpath(h.getLocator())).click();
+                    break;
+                case READING:
+                    driver.findElement(By.xpath(h.getLocator())).click();
+                    break;
+            }
+        }
+    }
+
+    private void typeStateCity(String state, String city) {
+        fieldState.sendKeys(state);
+        fieldState.sendKeys(Keys.ENTER);
+
+        fieldCity.sendKeys(city);
+        fieldCity.sendKeys(Keys.ENTER);
     }
 }
