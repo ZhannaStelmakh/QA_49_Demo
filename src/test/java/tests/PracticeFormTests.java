@@ -1,6 +1,7 @@
 package tests;
 
 import dto.Student;
+import enums.Gender;
 import manager.AppManager;
 import org.testng.annotations.Test;
 import pages.FormsPage;
@@ -11,7 +12,7 @@ public class PracticeFormTests extends AppManager {
     @Test
     public void practiceFormPositiveTest(){
         Student student = new Student("Petya","Petrov",
-                "petyapetrov@gmail.com", "Male",
+                "petyapetrov@gmail.com", Gender.MALE,
                 "0123456789", "12 May 2002",
                 "Maths,Chemistry,Commerce", "Sports",""
                 ,"street 1", "NCR", "Delhi");

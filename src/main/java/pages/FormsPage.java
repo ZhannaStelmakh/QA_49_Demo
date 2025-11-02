@@ -17,6 +17,7 @@ public class FormsPage extends BasePage {
     WebElement btnPracticeForm;
 
     public void clickBtnPracticeForm(){
+
         btnPracticeForm.click();
     }
 }

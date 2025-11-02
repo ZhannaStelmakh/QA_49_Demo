@@ -1,10 +1,12 @@
 package dto;
 
+import enums.Gender;
+
 public class Student {
     private String firstName;
     private String lastName;
     private String email;
-    private String gender;
+    private Gender gender;
     private String mobile;
     private String dateOfBirth;
     private String subjects;
@@ -14,10 +16,8 @@ public class Student {
     private String state;
     private String city;
 
-
-
     public Student(String lastName, String firstName, String email,
-                   String gender, String mobile, String dateOfBirth,
+                   Gender gender, String mobile, String dateOfBirth,
                    String subjects, String hobbies, String picture,
                    String address, String state, String city) {
         this.lastName = lastName;
@@ -58,11 +58,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
