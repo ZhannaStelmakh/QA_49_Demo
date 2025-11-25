@@ -18,7 +18,7 @@ on:
               java-version: '17'
               distribution: 'temurin'
           - name: Install chrome
-            uses: browse-actions/setup-chrome@latest
+            uses: browser-actions/setup-chrome@latest
           - name: setup Gradle
             uses: gradle/actions/setup-gradle@v4
           - name: Build with Gradle Wrapper
